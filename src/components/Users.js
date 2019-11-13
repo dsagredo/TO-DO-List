@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import db from '../FirestoreConfig';
-import { Table, Button, Row, Col, InputGroup, Input, Spinner, Modal, ModalBody, ModalFooter, Alert, Fade } from 'reactstrap';
+import { Container, Table, Button, Row, Col, InputGroup, Input, Spinner, Modal, ModalBody, ModalFooter, Alert, Fade } from 'reactstrap';
 import { IconContext } from "react-icons";
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const ModalDelete = (props) => {
     const [isModal, setModal] = useState(false);
     const toggleModal = () => setModal(!isModal);
     return (
-        <>
+        <Container>
             <Button color="danger" onClick={toggleModal}>
                 <IconContext.Provider value={{ size: '1.0em', style: { verticalAlign: 'text-top' } }}>
                     <FaTrashAlt />
@@ -28,7 +28,7 @@ const ModalDelete = (props) => {
                     <Button color="secondary" onClick={toggleModal}>No</Button>
                 </ModalFooter>
             </Modal>
-        </>
+        </Container>
     );
 }
 
@@ -43,7 +43,7 @@ const Users = props => {
         setEditing(false);
         setIsLoading(true);
         setFadeIn(true);
-            messageUser("Eliminado");
+        messageUser("Eliminado");
         db.collection('users').doc(id).delete().then(function () {
         }).catch(function (error) {
             messageUser("Error ", error);
@@ -72,12 +72,12 @@ const Users = props => {
                                             </IconContext.Provider>
                                         </Button>
                                     </td>
-                                    <td><ModalDelete isOpen={isModalData.isOpen} deleteId={deleteId} userId={user.id} className={isModalData.className}/></td>
+                                    <td><ModalDelete isOpen={isModalData.isOpen} deleteId={deleteId} userId={user.id} className={isModalData.className} /></td>
                                 </tr>
                             ))
                         ) : (
                                 <tr>
-                                    <td colSpan={2}>No hay registro</td>
+                                    <td colSpan={3}>No hay registro</td>
                                 </tr>
                             )
                     }
@@ -176,10 +176,9 @@ const App = () => {
     const addUser = (user) => {
         setError(validateForm(user));
         const { name } = user;
-        console.log("name ",name);
-        setFadeIn(true);
-        messageUser('Agregado');
         if (name) {
+            messageUser('Agregado');
+            setFadeIn(true);
             setIsLoading(true);
             db.collection('users').add({
                 name: name
@@ -230,11 +229,9 @@ const App = () => {
                         <Spinner color="secondary" style={{ width: '3rem', height: '3rem' }} />
                     </div>
                 ) : (
-                        isUsers && isUsers.length > 0 ? (
+                        isUsers && (
                             <Users data={isUsers} editId={editId} setEditing={setEditing} setIsLoading={setIsLoading} messageUser={messageUser} setFadeIn={setFadeIn} />
-                        ) : (
-                                <p>No hay datos</p>
-                            )
+                        )
                     )
             }
         </>

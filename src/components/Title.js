@@ -1,19 +1,18 @@
 import React from 'react';
-import { Row, Col, Jumbotron } from 'reactstrap';
+import { Container, Row, Col, Jumbotron } from 'reactstrap';
 
 export const Title = () => {
-    return(
-        <>
+    return (
+        <Container>
             <Row>
                 <Col xs="12">
                     <Jumbotron className="text-center">
-                        <h1 className="display-5">Todo App</h1>
-                        <p>ReactJS + Firestore</p>
+                        <h1 className="display-5">TO-DO Listado</h1>
                     </Jumbotron>
                 </Col>
             </Row>
-        </>
+        </Container>
     );
-} 
+}
 
 export default Title; 
