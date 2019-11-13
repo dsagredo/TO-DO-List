@@ -1,1 +1,3 @@
-un sistema de To-do list o lista de cosas por hacer
+# un sistema de To-do lista de cosas por hacer
+
+<img src="src/assets/img/myProject01.png">
