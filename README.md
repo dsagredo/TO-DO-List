@@ -1,4 +1,4 @@
-### un sistema de To-do lista de cosas por hacer con ReactJS y liberia reactstrap. 
+### Un sistema de To-do lista de cosas por hacer con ReactJS y liberia reactstrap. 
 
 <img src="src/assets/img/myProject01.png">
 
